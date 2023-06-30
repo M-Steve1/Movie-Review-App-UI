@@ -45,7 +45,19 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
             </Row>
             <Row className="mt-2">
                 <Col>
-                    <img src={movie?.poster} alt="" width={'100%'}/>
+                    {
+                        movie !== undefined ? 
+                        <img src={movie?.poster} alt="" width={'100%'}/> : 
+                        (
+                            <div style={{ 
+                                display: "flex", 
+                                justifyContent: "center", 
+                                alignContent: "center",
+                                marginTop: "10px"}}>
+                                <LoaderComp/>
+                            </div>
+                        )
+                    }
                 </Col>
                 <Col>
                     {
