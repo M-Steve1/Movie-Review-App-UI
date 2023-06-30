@@ -5,10 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import LoaderComp from '../loadercomp/LoaderComp';
+import zIndex from '@mui/material/styles/zIndex';
 
 
 const Hero = ({movies}) => {
-
     const navigate = useNavigate();
 
     function reviews(moveId) {
@@ -19,7 +20,8 @@ const Hero = ({movies}) => {
         <div className='movie-carousel-container'>
             <Carousel>
                 {
-                    movies?.map((movie) => {
+    
+                    movies !== undefined ?   movies?.map((movie) => {
                         return (
                             <Paper key={movie.imdbId}>
                                 <div className='movie-card-container'>
@@ -48,7 +50,15 @@ const Hero = ({movies}) => {
                                 </div>
                             </Paper>
                         )
-                    })
+                    }) : (
+                        <div style={{ 
+                            display: "flex", 
+                            justifyContent: "center", 
+                            alignContent: "center",
+                            marginTop: "10px"}}>
+                            <LoaderComp/>
+                        </div>
+                    )
                 }
             </Carousel>
         </div>
